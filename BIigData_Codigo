@@ -1,0 +1,68 @@
+-- 1.   Consulta básica: Inserción de documento.
+{
+  "CODIGO_ACCIDENTE": 9999999,
+  "FECHA": "12/11/2025",
+  "HORA": "14:30:00",
+  "GRAVEDAD": 2,
+  "CLASE": 1,
+  "CHOQUE": null,
+  "OBJETO_FIJO": null,
+  "DIRECCION": "CL 45 #22A-50",
+  "CODIGO_LOCALIDAD": 10,
+  "DISENO_LUGAR": 2,
+  "CODIGO_ACCIDENTADO": 5555555,
+  "FECHA_actor": "12/11/2025",
+  "CONDICION": "CONDUCTOR",
+  "ESTADO": "HERIDO",
+  "EDAD": 29,
+  "SEXO": "FEMENINO",
+  "VEHICULO": "9999999-1",
+  "FECHA_veh": "12/11/2025",
+  "VEHICULO_veh": "9999999-1",
+  "CLASE_veh": 1,
+  "SERVICIO": 1,
+  "MODALIDAD": 3,
+  "ENFUGA": "N",
+  "FECHA_hipo": "12/11/2025",
+  "CODIGO_CAUSA": 200
+}
+-- 2.	Selección de documentos
+{ SEXO: "MASCULINO" }
+---3.	Actualización
+{ 
+    $set: { 
+        "HORA": "17:20:00"
+        "SEXO": "FEMENINO"
+}
+}
+-- 4.	Eliminación
+{ CODIGO_ACCIDENTE: 44052042 }
+
+
+
+--•	Consultas con filtros y operadores.
+1.	 Filtros con comparación
+{ "EDAD": { "$gt": 40 } }
+--2.	Filtros con condiciones compuestas
+{ "$and": [ { "SEXO": "FEMENINO" }, { "GRAVEDAD": 2 } ] }
+--•	Consultas de agregación para calcular estadísticas (contar, sumar, promediar, etc.).
+1.	Conteo de accidentes por localidad
+{
+  "_id": "$CODIGO_LOCALIDAD",
+  "total_accidentes": { "$sum": 1 }
+}
+--2.	 Promedio de edad por condición del actor
+{
+  "EDAD": { "$ne": null },
+  "CONDICION": { "$ne": null }
+}
+
+{
+  "_id": "$CONDICION",
+  "edad_promedio": { "$avg": "$EDAD" }
+}
+--3.	Total de casos según estado
+{
+  "_id": "$ESTADO",
+  "cantidad": { "$sum": 1 }
+}
