@@ -23,7 +23,8 @@ El propósito es implementar y analizar una base de datos **NoSQL utilizando Mon
 - **Descripción:**  
   Cada documento representa un accidente reportado en Bogotá e incluye campos relacionados con la fecha, hora, ubicación, condición del actor,   estado, edad, sexo, tipo de vehículo y nivel de gravedad.  
   Esta estructura permite realizar análisis estadísticos y visualizaciones a partir de la información almacenada.
-
+- **Archivo de base de datos:**  siniestros_viales.json
+  Exportación de la colección principal utilizada en MongoDB.
 ---
 
 ## 🧠 Consultas implementadas
